@@ -56,7 +56,7 @@ Just wrap your images with `<div class="col-sm">` and place them inside `<div cl
 To make images responsive, add `img-fluid` class to each; for rounded corners and shadows use `rounded` and `z-depth-1` classes.
 Here's the code for the last row of images above: -->
 
-{% raw %}
+<!-- {% raw %}
 
 ```html
 <div class="row justify-content-sm-center">
@@ -69,4 +69,4 @@ Here's the code for the last row of images above: -->
 </div>
 ```
 
-{% endraw %}
+{% endraw %} -->
