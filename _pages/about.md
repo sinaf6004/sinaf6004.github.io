@@ -19,4 +19,6 @@ selected_papers: false # includes a list of papers marked as "selected={true}"
 social: true # includes social icons at the bottom of the page
 ---
 
-Hi. I'm sina
+Hi. I'm sina.
+ I am about 18 years ald and so eager for learning everything.
+ I am studing computer in IUST university.
