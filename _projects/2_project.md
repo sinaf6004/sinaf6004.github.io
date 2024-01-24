@@ -1,81 +1,107 @@
 ---
 layout: page
 title: project 2
-description: a project with a background image and giscus comments
-img: assets/img/3.jpg
+description: a basic project with pythone
+img: assets/img/32.jpg
 importance: 2
 category: work
 giscus_comments: true
 ---
-
-Every project has a beautiful feature showcase page.
-It's easy to include images in a flexible 3-column grid format.
-Make your photos 1/3, 2/3, or full width.
-
-To give your project a background in the portfolio page, just add the img tag to the front matter like so:
-
+below code is an example of a famous game that has been made with AI
     ---
-    layout: page
-    title: project
-    description: a project with a background image
-    img: /assets/img/12.jpg
+import os
+import time
+
+board = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+player = 1
+
+# Win Flags
+Win = 1
+Draw = -1
+Running = 0
+Stop = 1
+
+Game = Running
+Mark = 'X'
+
+
+def DrawBoard():
+    print(" %c | %c | %c " % (board[1], board[2], board[3]))
+    print("___|___|___")
+    print(" %c | %c | %c " % (board[4], board[5], board[6]))
+    print("___|___|___")
+    print(" %c | %c | %c " % (board[7], board[8], board[9]))
+    print(" | | ")
+
+
+def CheckPosition(x):
+    if board[x] == ' ':
+        return True
+    else:
+        return False
+
+
+def CheckWin():
+    global Game
+
+    if board[1] == board[2] and board[2] == board[3] and board[1] != ' ':
+        Game = Win
+    elif board[4] == board[5] and board[5] == board[6] and board[4] != ' ':
+        Game = Win
+    elif board[7] == board[8] and board[8] == board[9] and board[7] != ' ':
+        Game = Win
+    elif board[1] == board[4] and board[4] == board[7] and board[1] != ' ':
+        Game = Win
+    elif board[2] == board[5] and board[5] == board[8] and board[2] != ' ':
+        Game = Win
+    elif board[3] == board[6] and board[6] == board[9] and board[3] != ' ':
+        Game = Win
+    elif board[1] == board[5] and board[5] == board[9] and board[5] != ' ':
+        Game = Win
+    elif board[3] == board[5] and board[5] == board[7] and board[5] != ' ':
+        Game = Win
+    elif board[1] != ' ' and board[2] != ' ' and board[3] != ' ' and \
+            board[4] != ' ' and board[5] != ' ' and board[6] != ' ' and \
+            board[7] != ' ' and board[8] != ' ' and board[9] != ' ':
+        Game = Draw
+    else:
+        Game = Running
+
+
+print("Tic-Tac-Toe Game Designed By Sourabh Somani")
+print("Player 1 [X] --- Player 2 [O]\n")
+print()
+print()
+print("Please Wait...")
+time.sleep(3)
+
+while Game == Running:
+    os.system('cls')
+    DrawBoard()
+
+    if player % 2 != 0:
+        print("Player 1's chance")
+        Mark = 'X'
+    else:
+        print("Player 2's chance")
+        Mark = 'O'
+
+    choice = int(input("Enter the position between [1-9] where you want to mark: "))
+    if CheckPosition(choice):
+        board[choice] = Mark
+        player += 1
+        CheckWin()
+
+    os.system('cls')
+    DrawBoard()
+
+    if Game == Draw:
+        print("Game Draw")
+    elif Game == Win:
+        player -= 1
+        if player % 2 != 0:
+            print("Player 1 Won")
+        else:
+            print("Player 2 Won")
     ---
 
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/1.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/3.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    Caption photos easily. On the left, a road goes through a tunnel. Middle, leaves artistically fall in a hipster photoshoot. Right, in another hipster photoshoot, a lumberjack grasps a handful of pine needles.
-</div>
-<div class="row">
-    <div class="col-sm mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/5.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    This image can also have a caption. It's like magic.
-</div>
-
-You can also put regular text between your rows of images.
-Say you wanted to write a little bit about your project before you posted the rest of the images.
-You describe how you toiled, sweated, _bled_ for your project, and then... you reveal its glory in the next row of images.
-
-<div class="row justify-content-sm-center">
-    <div class="col-sm-8 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-    <div class="col-sm-4 mt-3 mt-md-0">
-        {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-    </div>
-</div>
-<div class="caption">
-    You can also have artistically styled 2/3 + 1/3 images, like these.
-</div>
-
-The code is simple.
-Just wrap your images with `<div class="col-sm">` and place them inside `<div class="row">` (read more about the <a href="https://getbootstrap.com/docs/4.4/layout/grid/">Bootstrap Grid</a> system).
-To make images responsive, add `img-fluid` class to each; for rounded corners and shadows use `rounded` and `z-depth-1` classes.
-Here's the code for the last row of images above:
-
-{% raw %}
-
-```html
-<div class="row justify-content-sm-center">
-  <div class="col-sm-8 mt-3 mt-md-0">
-    {% include figure.liquid path="assets/img/6.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-  </div>
-  <div class="col-sm-4 mt-3 mt-md-0">
-    {% include figure.liquid path="assets/img/11.jpg" title="example image" class="img-fluid rounded z-depth-1" %}
-  </div>
-</div>
-```
-
-{% endraw %}
